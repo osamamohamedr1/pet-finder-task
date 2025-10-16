@@ -59,7 +59,7 @@ class TextStyles {
     color: ColorsManager.textPrimary,
   );
 
-  static TextStyle font14GreyRegular2 = TextStyle(
+  static TextStyle font14GreyDarkRegular = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: ColorsManager.textSecondary,

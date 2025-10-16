@@ -23,24 +23,21 @@ class PetDetailHeader extends StatelessWidget {
       height: 400.h,
       child: Stack(
         children: [
-          // Pet Image
           Positioned.fill(child: Image.asset(imagePath, fit: BoxFit.cover)),
 
-          // Top Buttons (Back and Favorite)
           SafeArea(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Back Button
                   GestureDetector(
                     onTap: onBackTap,
                     child: Container(
                       width: 40.w,
                       height: 40.h,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withValues(alpha: .8),
                         borderRadius: BorderRadius.circular(12.r),
                       ),
                       child: Icon(
@@ -51,14 +48,13 @@ class PetDetailHeader extends StatelessWidget {
                     ),
                   ),
 
-                  // Favorite Button
                   GestureDetector(
                     onTap: onFavoriteTap,
                     child: Container(
                       width: 40.w,
                       height: 40.h,
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
+                        color: Colors.white.withValues(alpha: .8),
                         borderRadius: BorderRadius.circular(12.r),
                       ),
                       child: Center(

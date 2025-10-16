@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:pet_finder/core/theme/colors_manager.dart';
+import 'package:pet_finder/core/theme/text_styles.dart';
 
 class InfoChip extends StatelessWidget {
   final String label;
@@ -21,19 +21,16 @@ class InfoChip extends StatelessWidget {
         children: [
           Text(
             label,
-            style: TextStyle(
-              fontSize: 12.sp,
-              fontWeight: FontWeight.w400,
-              color: ColorsManager.textGrey,
+            style: TextStyles.font18BlackBold.copyWith(
+              fontWeight: FontWeight.w500,
             ),
           ),
           SizedBox(height: 4.h),
           Text(
             value,
-            style: TextStyle(
+            style: TextStyles.font14GreyNormal.copyWith(
+              fontWeight: FontWeight.w500,
               fontSize: 14.sp,
-              fontWeight: FontWeight.w600,
-              color: ColorsManager.textPrimary,
             ),
           ),
         ],

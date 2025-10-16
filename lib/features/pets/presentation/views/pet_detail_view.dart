@@ -53,7 +53,7 @@ class _PetDetailViewState extends State<PetDetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFD6EFEE),
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           PetDetailHeader(
@@ -64,10 +64,9 @@ class _PetDetailViewState extends State<PetDetailView> {
           ),
 
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(color: ColorsManager.white),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -90,36 +89,32 @@ class _PetDetailViewState extends State<PetDetailView> {
                                 children: [
                                   Icon(
                                     Icons.location_on,
-                                    size: 14.sp,
+                                    size: 18.sp,
                                     color: ColorsManager.distance,
                                   ),
                                   horizontalSpace(2),
                                   Text(
                                     widget.distance,
-                                    style: TextStyles.font12GreyRegular
-                                        .copyWith(
-                                          fontSize: 12.sp,
-                                          color: ColorsManager.textSecondary,
-                                        ),
+                                    style: TextStyles.font14GreyNormal,
                                   ),
                                 ],
                               ),
                             ],
                           ),
                         ),
-                        if (widget.price != null)
-                          Text(
-                            widget.price!,
-                            style: TextStyles.font24BlackBold.copyWith(
-                              color: ColorsManager.primary,
-                            ),
+
+                        Text(
+                          widget.price!,
+                          style: TextStyles.font24BlackBold.copyWith(
+                            color: ColorsManager.primary,
+                            fontSize: 26.sp,
                           ),
+                        ),
                       ],
                     ),
 
                     verticalSpace(20),
 
-                    // Info Chips Row
                     Row(
                       children: [
                         Expanded(
@@ -144,7 +139,6 @@ class _PetDetailViewState extends State<PetDetailView> {
 
                     verticalSpace(24),
 
-                    // About Section
                     Text(
                       'About:',
                       style: TextStyles.font20BlackBold.copyWith(
@@ -154,20 +148,15 @@ class _PetDetailViewState extends State<PetDetailView> {
 
                     verticalSpace(12),
 
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Text(
-                          widget.about,
-                          style: TextStyles.font14GreyRegular2.copyWith(
-                            height: 1.6,
-                          ),
-                        ),
+                    Text(
+                      widget.about,
+                      style: TextStyles.font14GreyDarkRegular.copyWith(
+                        height: 1.6,
                       ),
                     ),
 
                     verticalSpace(20),
 
-                    // Adopt Button
                     AdoptButton(
                       onPressed: () {
                         // TODO: Implement adoption flow
