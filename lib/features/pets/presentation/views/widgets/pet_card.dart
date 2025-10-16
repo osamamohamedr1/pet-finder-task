@@ -61,18 +61,15 @@ class PetCard extends StatelessWidget {
 
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 12.w,
-                  vertical: 12.h,
-                ),
+                padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 12.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(name, style: TextStyles.petName),
+                    Text(name, style: TextStyles.font18BlackBold),
                     verticalSpace(4),
-                    Text(gender, style: TextStyles.petInfo),
-                    Text(age, style: TextStyles.petInfo),
+                    Text(gender, style: TextStyles.font14GreyNormal),
+                    Text(age, style: TextStyles.font14GreyNormal),
                     verticalSpace(8),
                     Row(
                       children: [
@@ -82,7 +79,7 @@ class PetCard extends StatelessWidget {
                           color: ColorsManager.distance,
                         ),
                         horizontalSpace(2),
-                        Text(distance, style: TextStyles.petInfo),
+                        Text(distance, style: TextStyles.font14GreyNormal),
                       ],
                     ),
                   ],

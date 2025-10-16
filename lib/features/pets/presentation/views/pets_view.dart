@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_finder/core/helpers/assets.dart';
 import 'package:pet_finder/core/helpers/spacing.dart';
+import 'package:pet_finder/core/routes/routes.dart';
 import 'package:pet_finder/core/theme/colors_manager.dart';
 import 'package:pet_finder/core/theme/text_styles.dart';
 import 'package:pet_finder/features/pets/presentation/views/widgets/category_chip.dart';
@@ -32,33 +33,49 @@ class _PetsViewState extends State<PetsView> {
       'name': 'Joli',
       'gender': 'Female',
       'age': '5 Months Old',
+      'weight': '3 kg',
       'distance': '1.6 km away',
       'image': Assets.imagesCat,
       'isFavorite': false,
+      'price': '\$50',
+      'about':
+          'Joli is a cute and playful kitten who is full of energy. She loves to play with toys and explore her surroundings. She is very friendly and affectionate.',
     },
     {
       'name': 'Tom',
       'gender': 'Male',
       'age': '1 year Old',
+      'weight': '10 kg',
       'distance': '2.1 km away',
       'image': Assets.imagesCat,
       'isFavorite': false,
+      'price': '\$95',
+      'about':
+          'Tom is a friendly and loyal Golden Retriever who loves being around people. He\'ll always be ready for a game of fetch. Tom enjoys morning walks, belly rubs, and taking long naps after playtime. He\'s very well with other pets, and makes the perfect family dog.',
     },
     {
       'name': 'Oliver',
       'gender': 'Male or Female',
       'age': '5 Months Old',
+      'weight': '2 kg',
       'distance': '2 km away',
       'image': Assets.imagesCat,
       'isFavorite': false,
+      'price': '\$45',
+      'about':
+          'Oliver is a curious and playful kitten. He loves to explore and play with toys. He is very friendly and affectionate.',
     },
     {
       'name': 'Shelly',
       'gender': 'Female',
       'age': '15 year Old',
+      'weight': '8 kg',
       'distance': '2 km away',
       'image': Assets.imagesCat,
       'isFavorite': false,
+      'price': '\$30',
+      'about':
+          'Shelly is a calm and gentle senior cat. She loves to cuddle and relax. She is very sweet and affectionate.',
     },
   ];
 
@@ -76,7 +93,7 @@ class _PetsViewState extends State<PetsView> {
         backgroundColor: ColorsManager.white,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: Text('Find Your Forever Pet', style: TextStyles.appTitle),
+        title: Text('Find Your Forever Pet', style: TextStyles.font24BlackBold),
         actions: [
           IconButton(
             onPressed: () {},
@@ -100,7 +117,7 @@ class _PetsViewState extends State<PetsView> {
 
               verticalSpace(24),
 
-              Text('Categories', style: TextStyles.sectionTitle),
+              Text('Categories', style: TextStyles.font20BlackBold),
 
               verticalSpace(12),
 
@@ -146,7 +163,23 @@ class _PetsViewState extends State<PetsView> {
                       isFavorite: pet['isFavorite'],
                       onFavoriteTap: () => _toggleFavorite(index),
                       onCardTap: () {
-                        // TODO: Navigate to detail screen
+                        Navigator.pushNamed(
+                          context,
+                          Routes.petDetail,
+                          arguments: {
+                            'name': pet['name'],
+                            'gender': pet['gender'],
+                            'age': pet['age'],
+                            'weight': pet['weight'] ?? '5 kg',
+                            'distance': pet['distance'],
+                            'imagePath': pet['image'],
+                            'about':
+                                pet['about'] ??
+                                'This is a wonderful pet looking for a loving home.',
+                            'isFavorite': pet['isFavorite'],
+                            'price': pet['price'],
+                          },
+                        );
                       },
                     );
                   },

@@ -4,4 +4,5 @@ abstract class Routes {
   static const String signUp = 'signUp';
   static const String petsView = 'petsView';
   static const String home = 'home';
+  static const String petDetail = 'petDetail';
 }

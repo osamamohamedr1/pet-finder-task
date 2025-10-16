@@ -30,8 +30,8 @@ class CategoryChip extends StatelessWidget {
         child: Text(
           label,
           style: isSelected
-              ? TextStyles.categorySelected
-              : TextStyles.categoryUnselected,
+              ? TextStyles.font14WhiteSemiBold
+              : TextStyles.font14TealSemiBold,
         ),
       ),
     );

@@ -5,71 +5,67 @@ import 'package:pet_finder/core/theme/colors_manager.dart';
 class TextStyles {
   TextStyles._();
 
-  // App Title
-  static TextStyle appTitle = TextStyle(
+  static TextStyle font24BlackBold = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeight.bold,
     color: ColorsManager.textPrimary,
   );
 
-  // Pet Name
-  static TextStyle petName = TextStyle(
+  static TextStyle font28BlackBold = TextStyle(
+    fontSize: 28.sp,
+    fontWeight: FontWeight.bold,
+    color: ColorsManager.textPrimary,
+  );
+
+  static TextStyle font18BlackBold = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeight.bold,
     color: ColorsManager.textPrimary,
   );
 
-  // Pet Info (Gender, Age)
-  static TextStyle petInfo = TextStyle(
+  static TextStyle font14GreyNormal = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.normal,
     color: ColorsManager.textSecondary,
   );
 
-  // Distance
-  static TextStyle distance = TextStyle(
+  static TextStyle font12RedMedium = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w500,
     color: ColorsManager.distance,
   );
 
-  // Category Text Selected
-  static TextStyle categorySelected = TextStyle(
+  static TextStyle font14WhiteSemiBold = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w600,
     color: ColorsManager.categoryTextSelected,
   );
 
-  // Category Text Unselected
-  static TextStyle categoryUnselected = TextStyle(
+  static TextStyle font14TealSemiBold = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w600,
     color: ColorsManager.categoryTextUnselected,
   );
 
-  // Search Hint
-  static TextStyle searchHint = TextStyle(
+  static TextStyle font14GreyRegular = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: ColorsManager.textGrey,
   );
 
-  // Section Title
-  static TextStyle sectionTitle = TextStyle(
+  static TextStyle font20BlackBold = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.bold,
     color: ColorsManager.textPrimary,
   );
 
-  // Body Text
-  static TextStyle bodyText = TextStyle(
+  static TextStyle font14GreyRegular2 = TextStyle(
     fontSize: 14.sp,
     fontWeight: FontWeight.w400,
     color: ColorsManager.textSecondary,
   );
 
-  // Caption
-  static TextStyle caption = TextStyle(
+  static TextStyle font12GreyRegular = TextStyle(
     fontSize: 12.sp,
     fontWeight: FontWeight.w400,
     color: ColorsManager.textGrey,

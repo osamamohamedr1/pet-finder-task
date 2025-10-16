@@ -29,7 +29,7 @@ class CustomSearchBar extends StatelessWidget {
         onChanged: onChanged,
         decoration: InputDecoration(
           hintText: 'Search',
-          hintStyle: TextStyles.searchHint,
+          hintStyle: TextStyles.font14GreyRegular,
           prefixIcon: Icon(Icons.search, color: Colors.black, size: 26.sp),
           suffixIcon: FilterIcon(onFilterTap: onFilterTap),
           border: InputBorder.none,
