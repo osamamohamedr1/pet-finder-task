@@ -19,13 +19,12 @@ class PetsFinder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Initialize dependencies
     final dio = Dio();
     final apiService = ApiService(dio);
     final breedsRepository = BreedsRepositoryImpl(apiService);
 
     return ScreenUtilInit(
-      designSize: const Size(375, 914), // iPhone 11 Pro design size
+      designSize: const Size(375, 914),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
