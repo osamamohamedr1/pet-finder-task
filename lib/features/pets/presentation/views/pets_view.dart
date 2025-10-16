@@ -147,7 +147,10 @@ class _PetsViewState extends State<PetsView> {
                             onCardTap: () {
                               context.pushNamed(
                                 Routes.petDetail,
-                                arguments: breed,
+                                arguments: {
+                                  'breed': breed,
+                                  'isFavorite': isFavorite,
+                                },
                               );
                             },
                           );

@@ -21,8 +21,12 @@ class AppRouter {
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const BottomBar());
       case Routes.petDetail:
-        final breed = settings.arguments as BreedsModel;
-        return MaterialPageRoute(builder: (_) => PetDetailView(breed: breed));
+        final args = settings.arguments as Map<String, dynamic>;
+        final breed = args['breed'] as BreedsModel;
+        final isFavorite = args['isFavorite'] as bool? ?? false;
+        return MaterialPageRoute(
+          builder: (_) => PetDetailView(breed: breed, isFavorite: isFavorite),
+        );
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

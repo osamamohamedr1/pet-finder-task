@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -48,26 +49,17 @@ class PetCard extends StatelessWidget {
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(16.r)),
                 child: breed.imageUrl.isNotEmpty
-                    ? Image.network(
-                        breed.imageUrl,
+                    ? CachedNetworkImage(
+                        imageUrl: breed.imageUrl,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            Assets.imagesCat,
-                            fit: BoxFit.cover,
-                          );
-                        },
-                        loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Center(
-                            child: CircularProgressIndicator(
-                              value: loadingProgress.expectedTotalBytes != null
-                                  ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes!
-                                  : null,
-                            ),
-                          );
-                        },
+                        placeholder: (context, url) => Center(
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2.w,
+                            color: ColorsManager.primary,
+                          ),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            Image.asset(Assets.imagesCat, fit: BoxFit.cover),
                       )
                     : Image.asset(Assets.imagesCat, fit: BoxFit.cover),
               ),
@@ -92,23 +84,25 @@ class PetCard extends StatelessWidget {
                       style: TextStyles.font14GreyNormal,
                     ),
                     Text(
-                      breed.lifeSpan ?? 'Unknown',
+                      'Life Span: ${breed.lifeSpan ?? 'Unknown'}',
                       style: TextStyles.font14GreyNormal,
                     ),
                     verticalSpace(8),
                     Row(
                       children: [
                         Icon(
-                          Icons.location_on_outlined,
+                          Icons.location_on_rounded,
                           size: 18.sp,
                           color: ColorsManager.distance,
                         ),
                         horizontalSpace(2),
-                        Text(
-                          breed.origin ?? 'Unknown origin',
-                          style: TextStyles.font14GreyNormal,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        Expanded(
+                          child: Text(
+                            breed.origin ?? 'Unknown origin',
+                            style: TextStyles.font14GreyNormal,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                       ],
                     ),
