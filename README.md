@@ -6,7 +6,7 @@ A modern Flutter application for discovering and adopting cats. Browse different
 
 | Home Screen | Breed Details |
 |------------|---------------|
-| *Screenshot coming soon* | *Screenshot coming soon* |
+|<img width="500" height="1500" alt="Screenshot_1760618723" src="https://github.com/user-attachments/assets/d46becbe-bea4-4a8e-94bc-7d7fa36535b1" />| <img width="500" height="1500" alt="Screenshot_1760618737" src="https://github.com/user-attachments/assets/ca008bcb-affc-4e76-ad2f-976ded8d4b68" />|
 ## Features
 
 - 🔍 Browse cat breeds from The Cat API
