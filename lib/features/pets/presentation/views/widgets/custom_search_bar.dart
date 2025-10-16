@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_finder/core/theme/colors_manager.dart';
 import 'package:pet_finder/core/theme/text_styles.dart';
 
@@ -17,11 +18,11 @@ class CustomSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 48,
+      height: 48.h,
       decoration: BoxDecoration(
         color: ColorsManager.background,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: ColorsManager.borderLight, width: 1),
+        borderRadius: BorderRadius.circular(12.r),
+        border: Border.all(color: ColorsManager.borderLight, width: 1.w),
       ),
       child: TextField(
         controller: controller,
@@ -29,12 +30,12 @@ class CustomSearchBar extends StatelessWidget {
         decoration: InputDecoration(
           hintText: 'Search',
           hintStyle: TextStyles.searchHint,
-          prefixIcon: const Icon(Icons.search, color: Colors.black, size: 26),
+          prefixIcon: Icon(Icons.search, color: Colors.black, size: 26.sp),
           suffixIcon: FilterIcon(onFilterTap: onFilterTap),
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 14,
+          contentPadding: EdgeInsets.symmetric(
+            horizontal: 16.w,
+            vertical: 14.h,
           ),
         ),
       ),
@@ -52,14 +53,14 @@ class FilterIcon extends StatelessWidget {
     return GestureDetector(
       onTap: onFilterTap,
       child: Container(
-        width: 48,
-        height: 48,
+        width: 48.w,
+        height: 48.h,
         decoration: BoxDecoration(
           color: ColorsManager.background,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: ColorsManager.borderLight, width: 1),
+          borderRadius: BorderRadius.circular(12.r),
+          border: Border.all(color: ColorsManager.borderLight, width: 1.w),
         ),
-        child: const Icon(Icons.tune, color: Colors.black, size: 20),
+        child: Icon(Icons.tune, color: Colors.black, size: 20.sp),
       ),
     );
   }

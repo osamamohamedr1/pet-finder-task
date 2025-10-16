@@ -6,7 +6,8 @@ class ApiConstants {
   static const String baseUrl = 'https://api.thecatapi.com/v1';
 
   // API Key
-  static const String apiKey = 'ylX4blBYT9FaoVd6OhvR';
+  static const String apiKey =
+      'live_07Qxf52BAIsMhcM5RwL5h5rKljLedry8r1HU3Pji5elZT3ZV2m6oOiYFnftqEPOp';
 
   // Endpoints
   static const String breeds = '/breeds';

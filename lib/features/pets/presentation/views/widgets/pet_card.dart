@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pet_finder/core/helpers/assets.dart';
 import 'package:pet_finder/core/helpers/spacing.dart';
@@ -32,36 +33,37 @@ class PetCard extends StatelessWidget {
     return GestureDetector(
       onTap: onCardTap,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 16),
+        margin: EdgeInsets.only(bottom: 16.h),
         decoration: BoxDecoration(
           color: ColorsManager.cardBackground,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(16.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: .04),
-              blurRadius: 8,
-              offset: const Offset(0, 2),
+              color: Colors.black.withValues(alpha: .05),
+              blurRadius: 4.r,
+              spreadRadius: .5.r,
+              offset: const Offset(0, 0),
             ),
           ],
         ),
         child: Row(
           children: [
             Container(
-              width: 116,
-              height: 116,
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+              width: 120.w,
+              height: 116.h,
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
 
               child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(16)),
+                borderRadius: BorderRadius.all(Radius.circular(16.r)),
                 child: Image.asset(imagePath, fit: BoxFit.cover),
               ),
             ),
 
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 12,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 12.w,
+                  vertical: 12.h,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,9 +76,9 @@ class PetCard extends StatelessWidget {
                     verticalSpace(8),
                     Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.location_on,
-                          size: 18,
+                          size: 18.sp,
                           color: ColorsManager.distance,
                         ),
                         horizontalSpace(2),
@@ -91,13 +93,13 @@ class PetCard extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.only(right: 16),
+                padding: EdgeInsets.only(right: 16.w),
                 child: GestureDetector(
                   onTap: onFavoriteTap,
                   child: SvgPicture.asset(
                     isFavorite ? Assets.svgsHeart2 : Assets.svgsHeart,
-                    width: 30,
-                    height: 24,
+                    width: 30.w,
+                    height: 24.h,
                   ),
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pet_finder/core/helpers/assets.dart';
 import 'package:pet_finder/core/helpers/spacing.dart';
 import 'package:pet_finder/core/theme/colors_manager.dart';
@@ -75,21 +76,21 @@ class _PetsViewState extends State<PetsView> {
         backgroundColor: ColorsManager.white,
         elevation: 0,
         scrolledUnderElevation: 0,
-        title: const Text('Find Your Forever Pet', style: TextStyles.appTitle),
+        title: Text('Find Your Forever Pet', style: TextStyles.appTitle),
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(
+            icon: Icon(
               Icons.notifications_none,
               color: ColorsManager.textPrimary,
-              size: 24,
+              size: 24.sp,
             ),
           ),
         ],
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -99,19 +100,19 @@ class _PetsViewState extends State<PetsView> {
 
               verticalSpace(24),
 
-              const Text('Categories', style: TextStyles.sectionTitle),
+              Text('Categories', style: TextStyles.sectionTitle),
 
               verticalSpace(12),
 
               SizedBox(
-                height: 36,
+                height: 36.h,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: EdgeInsets.only(
-                        right: index < categories.length - 1 ? 8 : 0,
+                        right: index < categories.length - 1 ? 8.w : 0,
                       ),
                       child: CategoryChip(
                         label: categories[index],
@@ -127,7 +128,7 @@ class _PetsViewState extends State<PetsView> {
                 ),
               ),
 
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
 
               // Pets List
               Expanded(

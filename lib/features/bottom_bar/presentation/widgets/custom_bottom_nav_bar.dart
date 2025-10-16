@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pet_finder/core/theme/colors_manager.dart';
 
@@ -15,13 +16,13 @@ class CustomBottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 70.h,
       decoration: BoxDecoration(
         color: ColorsManager.white,
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
+            blurRadius: 10.r,
             offset: const Offset(0, -2),
           ),
         ],
@@ -63,11 +64,11 @@ class CustomBottomNavBar extends StatelessWidget {
       onTap: () => onTap(index),
       behavior: HitTestBehavior.opaque,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
         child: SvgPicture.asset(
           iconPath,
-          width: 24,
-          height: 24,
+          width: 24.w,
+          height: 24.h,
           colorFilter: ColorFilter.mode(
             isActive ? ColorsManager.iconActive : ColorsManager.iconInactive,
             BlendMode.srcIn,

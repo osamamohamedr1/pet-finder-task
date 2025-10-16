@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:pet_finder/core/networking/api_constants.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class ApiService {
@@ -6,8 +7,9 @@ class ApiService {
 
   ApiService(this.dio) {
     dio.options = BaseOptions(
-      baseUrl: 'http://54.198.235.195:8080/api/',
+      baseUrl: ApiConstants.baseUrl,
       headers: {
+        'x-api-key': ApiConstants.apiKey,
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
