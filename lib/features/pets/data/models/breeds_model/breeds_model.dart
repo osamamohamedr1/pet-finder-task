@@ -1,5 +1,14 @@
 import 'weight.dart';
 
+extension BreedsModelX on BreedsModel {
+  String get imageUrl {
+    if (referenceImageId == null || referenceImageId!.isEmpty) {
+      return '';
+    }
+    return 'https://cdn2.thecatapi.com/images/$referenceImageId.jpg';
+  }
+}
+
 class BreedsModel {
   Weight? weight;
   String? id;

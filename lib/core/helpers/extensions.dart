@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+extension ImageUrlX on String {
+  String toImageUrl() {
+    return 'https://cdn2.thecatapi.com/images/$this.jpg';
+  }
+}
+
 extension Navigation on BuildContext {
   Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
     return Navigator.of(this).pushNamed(routeName, arguments: arguments);

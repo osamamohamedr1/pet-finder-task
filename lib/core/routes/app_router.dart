@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pet_finder/core/routes/routes.dart';
 import 'package:pet_finder/features/bottom_bar/presentation/views/bottom_bar.dart';
+import 'package:pet_finder/features/pets/data/models/breeds_model/breeds_model.dart';
 import 'package:pet_finder/features/pets/presentation/views/pets_view.dart';
 import 'package:pet_finder/features/pets/presentation/views/pet_detail_view.dart';
 // import 'package:pet_finder/feature/login/presentation/views/login_view.dart';
@@ -20,20 +21,8 @@ class AppRouter {
       case Routes.home:
         return MaterialPageRoute(builder: (_) => const BottomBar());
       case Routes.petDetail:
-        final args = settings.arguments as Map<String, dynamic>;
-        return MaterialPageRoute(
-          builder: (_) => PetDetailView(
-            name: args['name'] as String,
-            gender: args['gender'] as String,
-            age: args['age'] as String,
-            weight: args['weight'] as String,
-            distance: args['distance'] as String,
-            imagePath: args['imagePath'] as String,
-            about: args['about'] as String,
-            isFavorite: args['isFavorite'] as bool? ?? false,
-            price: args['price'] as String?,
-          ),
-        );
+        final breed = settings.arguments as BreedsModel;
+        return MaterialPageRoute(builder: (_) => PetDetailView(breed: breed));
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

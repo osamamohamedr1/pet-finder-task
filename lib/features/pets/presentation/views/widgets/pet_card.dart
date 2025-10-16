@@ -5,24 +5,17 @@ import 'package:pet_finder/core/helpers/assets.dart';
 import 'package:pet_finder/core/helpers/spacing.dart';
 import 'package:pet_finder/core/theme/colors_manager.dart';
 import 'package:pet_finder/core/theme/text_styles.dart';
+import 'package:pet_finder/features/pets/data/models/breeds_model/breeds_model.dart';
 
 class PetCard extends StatelessWidget {
-  final String name;
-  final String gender;
-  final String age;
-  final String distance;
-  final String imagePath;
+  final BreedsModel breed;
   final bool isFavorite;
   final VoidCallback onFavoriteTap;
   final VoidCallback onCardTap;
 
   const PetCard({
     super.key,
-    required this.name,
-    required this.gender,
-    required this.age,
-    required this.distance,
-    required this.imagePath,
+    required this.breed,
     this.isFavorite = false,
     required this.onFavoriteTap,
     required this.onCardTap,
@@ -52,10 +45,31 @@ class PetCard extends StatelessWidget {
               width: 120.w,
               height: 116.h,
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
-
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(16.r)),
-                child: Image.asset(imagePath, fit: BoxFit.cover),
+                child: breed.imageUrl.isNotEmpty
+                    ? Image.network(
+                        breed.imageUrl,
+                        fit: BoxFit.cover,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.asset(
+                            Assets.imagesCat,
+                            fit: BoxFit.cover,
+                          );
+                        },
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          );
+                        },
+                      )
+                    : Image.asset(Assets.imagesCat, fit: BoxFit.cover),
               ),
             ),
 
@@ -66,20 +80,36 @@ class PetCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(name, style: TextStyles.font18BlackBold),
+                    Text(
+                      breed.name ?? 'Unknown',
+                      style: TextStyles.font18BlackBold,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                     verticalSpace(4),
-                    Text(gender, style: TextStyles.font14GreyNormal),
-                    Text(age, style: TextStyles.font14GreyNormal),
+                    Text(
+                      'Affection: ${breed.affectionLevel ?? 0}/5',
+                      style: TextStyles.font14GreyNormal,
+                    ),
+                    Text(
+                      breed.lifeSpan ?? 'Unknown',
+                      style: TextStyles.font14GreyNormal,
+                    ),
                     verticalSpace(8),
                     Row(
                       children: [
                         Icon(
-                          Icons.location_on,
+                          Icons.location_on_outlined,
                           size: 18.sp,
                           color: ColorsManager.distance,
                         ),
                         horizontalSpace(2),
-                        Text(distance, style: TextStyles.font14GreyNormal),
+                        Text(
+                          breed.origin ?? 'Unknown origin',
+                          style: TextStyles.font14GreyNormal,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ],
                     ),
                   ],

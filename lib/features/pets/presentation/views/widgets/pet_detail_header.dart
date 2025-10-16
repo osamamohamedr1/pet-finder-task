@@ -1,13 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pet_finder/core/helpers/assets.dart';
+import 'package:pet_finder/core/theme/colors_manager.dart';
 
 class PetDetailHeader extends StatelessWidget {
   final String imagePath;
   final bool isFavorite;
   final VoidCallback onFavoriteTap;
   final VoidCallback onBackTap;
+  final bool isNetworkImage;
 
   const PetDetailHeader({
     super.key,
@@ -15,6 +18,7 @@ class PetDetailHeader extends StatelessWidget {
     required this.isFavorite,
     required this.onFavoriteTap,
     required this.onBackTap,
+    this.isNetworkImage = false,
   });
 
   @override
@@ -23,7 +27,22 @@ class PetDetailHeader extends StatelessWidget {
       height: 400.h,
       child: Stack(
         children: [
-          Positioned.fill(child: Image.asset(imagePath, fit: BoxFit.cover)),
+          Positioned.fill(
+            child: isNetworkImage
+                ? CachedNetworkImage(
+                    imageUrl: imagePath,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 3.w,
+                        color: ColorsManager.primary,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        Image.asset(Assets.imagesCat, fit: BoxFit.cover),
+                  )
+                : Image.asset(imagePath, fit: BoxFit.cover),
+          ),
 
           SafeArea(
             child: Padding(

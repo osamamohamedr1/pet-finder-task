@@ -1,34 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:pet_finder/core/helpers/assets.dart';
 import 'package:pet_finder/core/helpers/spacing.dart';
 import 'package:pet_finder/core/theme/colors_manager.dart';
 import 'package:pet_finder/core/theme/text_styles.dart';
+import 'package:pet_finder/features/pets/data/models/breeds_model/breeds_model.dart';
 import 'package:pet_finder/features/pets/presentation/views/widgets/info_chip.dart';
 import 'package:pet_finder/features/pets/presentation/views/widgets/pet_detail_header.dart';
 import 'package:pet_finder/features/pets/presentation/views/widgets/adopt_button.dart';
 
 class PetDetailView extends StatefulWidget {
-  final String name;
-  final String gender;
-  final String age;
-  final String weight;
-  final String distance;
-  final String imagePath;
-  final String about;
+  final BreedsModel breed;
   final bool isFavorite;
-  final String? price;
 
   const PetDetailView({
     super.key,
-    required this.name,
-    required this.gender,
-    required this.age,
-    required this.weight,
-    required this.distance,
-    required this.imagePath,
-    required this.about,
+    required this.breed,
     this.isFavorite = false,
-    this.price,
   });
 
   @override
@@ -52,15 +40,20 @@ class _PetDetailViewState extends State<PetDetailView> {
 
   @override
   Widget build(BuildContext context) {
+    final breed = widget.breed;
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         children: [
           PetDetailHeader(
-            imagePath: widget.imagePath,
+            imagePath: breed.imageUrl.isNotEmpty
+                ? breed.imageUrl
+                : Assets.imagesCat,
             isFavorite: _isFavorite,
             onFavoriteTap: _toggleFavorite,
             onBackTap: () => Navigator.pop(context),
+            isNetworkImage: breed.imageUrl.isNotEmpty,
           ),
 
           Expanded(
@@ -81,33 +74,25 @@ class _PetDetailViewState extends State<PetDetailView> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                widget.name,
+                                breed.name ?? 'Unknown',
                                 style: TextStyles.font28BlackBold,
                               ),
                               SizedBox(height: 4.h),
                               Row(
                                 children: [
                                   Icon(
-                                    Icons.location_on,
+                                    Icons.public,
                                     size: 18.sp,
                                     color: ColorsManager.distance,
                                   ),
                                   horizontalSpace(2),
                                   Text(
-                                    widget.distance,
+                                    breed.origin ?? 'Unknown',
                                     style: TextStyles.font14GreyNormal,
                                   ),
                                 ],
                               ),
                             ],
-                          ),
-                        ),
-
-                        Text(
-                          widget.price!,
-                          style: TextStyles.font24BlackBold.copyWith(
-                            color: ColorsManager.primary,
-                            fontSize: 26.sp,
                           ),
                         ),
                       ],
@@ -119,22 +104,43 @@ class _PetDetailViewState extends State<PetDetailView> {
                       children: [
                         Expanded(
                           child: InfoChip(
-                            label: 'Gender',
-                            value: widget.gender,
+                            label: 'Weight',
+                            value: breed.weight?.metric ?? 'N/A',
                           ),
-                        ),
-                        horizontalSpace(12),
-                        Expanded(
-                          child: InfoChip(label: 'Age', value: widget.age),
                         ),
                         horizontalSpace(12),
                         Expanded(
                           child: InfoChip(
-                            label: 'Weight',
-                            value: widget.weight,
+                            label: 'Life Span',
+                            value: breed.lifeSpan ?? 'N/A',
+                          ),
+                        ),
+                        horizontalSpace(12),
+                        Expanded(
+                          child: InfoChip(
+                            label: 'Affection',
+                            value: '${breed.affectionLevel ?? 0}/5',
                           ),
                         ),
                       ],
+                    ),
+
+                    verticalSpace(24),
+
+                    Text(
+                      'Temperament:',
+                      style: TextStyles.font20BlackBold.copyWith(
+                        fontSize: 18.sp,
+                      ),
+                    ),
+
+                    verticalSpace(8),
+
+                    Text(
+                      breed.temperament ?? 'Not specified',
+                      style: TextStyles.font14GreyDarkRegular.copyWith(
+                        height: 1.6,
+                      ),
                     ),
 
                     verticalSpace(24),
@@ -149,11 +155,26 @@ class _PetDetailViewState extends State<PetDetailView> {
                     verticalSpace(12),
 
                     Text(
-                      widget.about,
+                      breed.description ?? 'No description available.',
                       style: TextStyles.font14GreyDarkRegular.copyWith(
                         height: 1.6,
                       ),
                     ),
+
+                    if (breed.wikipediaUrl != null &&
+                        breed.wikipediaUrl!.isNotEmpty) ...[
+                      verticalSpace(16),
+                      TextButton.icon(
+                        onPressed: () {
+                          // TODO: Open Wikipedia URL
+                        },
+                        icon: Icon(Icons.info_outline, size: 20.sp),
+                        label: const Text('Learn More'),
+                        style: TextButton.styleFrom(
+                          foregroundColor: ColorsManager.primary,
+                        ),
+                      ),
+                    ],
 
                     verticalSpace(20),
 
