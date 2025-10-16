@@ -12,7 +12,9 @@ class PetsFinder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: Routes.petsView,
+      title: 'Pet Finder',
+      theme: ThemeData(useMaterial3: true, fontFamily: 'SF Pro Display'),
+      initialRoute: Routes.home,
       onGenerateRoute: AppRouter().generateRoute,
       debugShowCheckedModeBanner: false,
     );
