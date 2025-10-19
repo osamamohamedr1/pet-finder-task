@@ -75,7 +75,60 @@ The app implements comprehensive error handling:
 ## Testing
 
 ### Test Coverage
-*Testing documentation will be added here*
+
+The project includes comprehensive unit tests for the data and presentation layers.
+
+
+
+### Test Structure
+
+```
+test/
+└── features/
+    └── pets/
+        ├── data/
+        │   └── repositories/
+        │       └── breeds_repository_test.dart    # Repository layer tests
+        └── presentation/
+            └── cubit/
+                └── breeds_cubit_test.dart         # State management tests
+```
+
+### What's Tested
+
+#### Repository Tests (`breeds_repository_test.dart`)
+- ✅ Successful API calls and data parsing
+- ✅ Empty response handling
+- ✅ Network errors (timeout, connection errors)
+- ✅ Invalid response format handling
+- ✅ Unexpected exceptions
+- ✅ Default parameter values
+
+#### Cubit Tests (`breeds_cubit_test.dart`)
+- ✅ Initial state verification
+- ✅ Loading → Success state flow
+- ✅ Loading → Error state flow
+- ✅ Retry functionality
+- ✅ Empty data handling
+- ✅ Multiple consecutive calls
+
+### Testing Tools
+
+- **mockito** ^5.4.4 - Mock dependencies
+- **bloc_test** ^9.1.7 - Cubit/Bloc testing utilities
+- **build_runner** ^2.4.13 - Code generation for mocks
+
+### Generating Mock Files
+
+When you add new tests with `@GenerateMocks`, run:
+
+```bash
+# Generate mocks for testing
+flutter pub run build_runner build --delete-conflicting-outputs
+
+# Or watch for changes
+flutter pub run build_runner watch --delete-conflicting-outputs
+```
 
 ## Contact
 
